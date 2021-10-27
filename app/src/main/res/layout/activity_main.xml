@@ -1,0 +1,272 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="10dp" />
+
+        <EditText
+            android:id="@+id/txtbox_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="24dp"
+            tools:layout_editor_absoluteY="187dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/txt_emp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Emp Id"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="10dp" />
+
+        <EditText
+            android:id="@+id/txtbox_emp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="24dp"
+            tools:layout_editor_absoluteY="187dp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/txt_gender"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Gender"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="10dp" />
+        <RadioGroup
+            android:id="@+id/radio_gro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="82dp"
+            tools:layout_editor_absoluteY="642dp" >
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="149dp"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                tools:layout_editor_absoluteX="48dp"
+                tools:layout_editor_absoluteY="386dp" />
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                tools:layout_editor_absoluteX="48dp"
+                tools:layout_editor_absoluteY="386dp" />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/Salary"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Salary"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="10dp" />
+
+        <EditText
+            android:id="@+id/txtbox_salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            tools:layout_editor_absoluteX="175dp"
+            tools:layout_editor_absoluteY="413dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/addr"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="address"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="10dp" />
+
+        <EditText
+            android:id="@+id/PostalAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            tools:layout_editor_absoluteX="69dp"
+            tools:layout_editor_absoluteY="513dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/Submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:onClick="submit"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="591dp" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="10dp" />
+
+        <Button
+            android:id="@+id/Excel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Excel"
+            android:onClick="out_excel"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="591dp" />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="10dp" />
+
+        <Button
+            android:id="@+id/List"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List"
+            android:onClick="listing"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="591dp" />
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
