@@ -2,6 +2,7 @@ package com.example.demo_db;
 //SaRan 27-10-21
 //https://www.youtube.com/channel/UC13QfHb2Dyncn1fwuavXq9A
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import androidx.appcompat.app.AlertDialog;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +18,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.ajts.androidmads.library.SQLiteToExcel;
+import com.example.demo_db.util.Utils;
 
-
+import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
     //Initializing fields
     DatabaseHelper myDB;
     EditText edit_name, edit_emp, edit_add,edit_salary;
-    Button addData, viewData,excel;
+    Button addData, viewData,excel,gridview,back;
     String name, emp, add,gender,salary;
+    SQLiteToExcel sqliteToExcel;
 
     //int salary;
     RadioGroup radioGroup;
@@ -36,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
-
+        //
+        File file = new File(directory_path);
+        if (!file.exists()) {
+            Log.v("File Created", String.valueOf(file.mkdirs()));
+        }
         //Initialize Database
         myDB = new DatabaseHelper( this );
 
@@ -66,11 +74,40 @@ public class MainActivity extends AppCompatActivity {
         addData = findViewById( R.id.Submit );
         viewData = findViewById( R.id.List );
         excel=findViewById( R.id.Excel );
-        //Call Methods
+        gridview=findViewById(R.id.List);
+        back=findViewById(R.id.btnback);
         AddData();
-        viewData();
-         export();
+        gridview();
+       // export();
 
+
+
+
+
+
+        excel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                // Export SQLite DB as EXCEL FILE
+                sqliteToExcel = new SQLiteToExcel(getApplicationContext(), DatabaseHelper.DATABASE_NAME, directory_path);
+                sqliteToExcel.exportAllTables("users.xls", new SQLiteToExcel.ExportListener() {
+                    @Override
+                    public void onStart() {
+
+                    }
+
+                    @Override
+                    public void onCompleted(String filePath) {
+                        Utils.showSnackBar(view, "Successfully Exported");
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Utils.showSnackBar(view, e.getMessage());
+                    }
+                });
+            }
+        });
     }
 
 
@@ -97,84 +134,40 @@ public class MainActivity extends AppCompatActivity {
             }
         } );
     }
+//Next Activity
+    public void gridview() {
+        viewData.setOnClickListener(new View.OnClickListener() {
 
-    //For viewing data in database
-    public void viewData(){
-
-        viewData.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor res = myDB.getData();
+                Intent myIntent = new Intent(getApplicationContext(), GridViewActivity.class);
+               // Intent intent = new Intent(MainActivity.this, GridViewActivity.class);
+                startActivity(myIntent);
 
-                if (res.getCount() == 0){
-                    showMessage("Error", "Data not found!");
-                }
-
-                else{
-                    StringBuffer buffer = new StringBuffer();
-                    while (res.moveToNext()){
-                        buffer.append( "ID: " + res.getString( 0 ) + "\n" );
-                        buffer.append( "Name: " + res.getString( 1 ) + "\n" );
-                        buffer.append( "EmpID: " + res.getString( 2 ) + "\n" );
-                        buffer.append( "Gender: " + res.getString( 3 ) + "\n" );
-                        buffer.append( "Salary: " + res.getString( 4 ) + "\n" );
-                        buffer.append( "Address: " + res.getString( 5 ) + "\n" );
-
-
-                    }
-
-                    showMessage( "Data", buffer.toString() );
-
-                }
             }
-        } );
+        });
     }
 
 
-    public void export(){
-   excel.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(final View view) {
-
-            // Export SQLite DB as EXCEL FILE
-            SQLiteToExcel sqliteToExcel = new SQLiteToExcel(getApplicationContext(), DatabaseHelper.DATABASE_NAME, directory_path);
-            sqliteToExcel.exportSingleTable(DatabaseHelper.TABLE_NAME, "table1.xls", new SQLiteToExcel.ExportListener()
-            //sqliteToExcel.exportAllTables("Employee.xls", new SQLiteToExcel.ExportListener()
-            {
-                @Override
-                public void onStart() {
-
-                }
-
-                @Override
-                public void onCompleted(String filePath) {
-                     Toast.makeText(MainActivity.this, "Export successful!", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onError(Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(MainActivity.this, "No Export", Toast.LENGTH_SHORT).show();
-                }
-            });
 
 
+
+
+
+
+
+
+
+
+
+
+            //Method for creating AlertDialog box
+            private void showMessage(String title, String message) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder( this );
+                builder.setCancelable( true );
+                builder.setTitle( title );
+                builder.setMessage( message );
+                builder.show();
+            }
         }
-    });
-
-    }
-
-
-
-
-
-    //Method for creating AlertDialog box
-    private void showMessage(String title, String message) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder( this );
-        builder.setCancelable( true );
-        builder.setTitle( title );
-        builder.setMessage( message );
-        builder.show();
-    }
-}
